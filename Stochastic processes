@@ -116,4 +116,24 @@ if (!is.na(expected_time)) {
   cat("State", target_state, "is not reachable from state", initial_state)
 }
 
+# verifying if a Brownian motion is a martingale 
+
+# Function to simulate Brownian motion path
+brownian_motion <- function(n_steps, sigma) {
+  # Generate standard normal random variables
+  dW <- rnorm(n_steps, mean = 0, sd = sqrt(1/n_steps))
+  
+  # Simulate Brownian motion path with drift (set to 0 for standard BM)
+  W <- cumsum(sigma * dW)
+  return(W)
+}
+
+# Function to calculate expected value at future time step
+expected_value <- function(W, t, future_step) {
+  n <- length(W)
+  if (future_step > n) {
+    stop("Future step exceeds path length")
+  }
+  return(mean(W[1:(n - future_step)]))
+}
 

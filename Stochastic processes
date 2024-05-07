@@ -285,4 +285,23 @@ z1_z2 <- box_muller(u1, u2)
 cat("Standard normal variable 1:", z1_z2[1])
 cat("\nStandard normal variable 2:", z1_z2[2])
 
+# Monte Carlo simulation polar method 
+polar_method <- function(n_samples, a, b, c, d) {
+  """
+  This function generates random samples within a rectangular or elliptical region using the polar method.
+
+  Args:
+      n_samples: The number of samples to generate.
+      a, b: Lower and upper bounds for the x-axis (rectangle) or center and radius for the x-axis (ellipse).
+      c, d: Lower and upper bounds for the y-axis (rectangle) or center and radius for the y-axis (ellipse).
+
+  Returns:
+      A data frame containing two numeric vectors:
+          - x: The generated x-coordinates within the region.
+          - y: The generated y-coordinates within the region.
+  """
+  
+  # Generate uniform random variables
+  u1 <- runif(n_samples)
+  u2 <- runif(n_samples)
 

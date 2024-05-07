@@ -256,4 +256,22 @@ ggplot(data.frame(t, process_path), aes(x = t, y = process_path)) +
        y = "Process Value") +
   theme_bw()
 
+#Monte Carlo simulation - box Muller formulae 
+
+box_muller <- function(u1, u2) {
+  """
+  This function generates two independent standard normal variables using the Box-Muller transform.
+
+  Args:
+      u1: A random number uniformly distributed between 0 and 1.
+      u2: Another random number uniformly distributed between 0 and 1 (independent of u1).
+
+  Returns:
+      A numeric vector containing two independent standard normal variables (z1, z2).
+  """
+  z1 <- sqrt(-2 * log(u1)) * cos(2 * pi * u2)
+  z2 <- sqrt(-2 * log(u1)) * sin(2 * pi * u2)
+  return(c(z1, z2))
+}
+
 

@@ -274,4 +274,15 @@ box_muller <- function(u1, u2) {
   return(c(z1, z2))
 }
 
+# Example usage
+# Generate two independent random numbers between 0 and 1
+u1 <- runif(1)
+u2 <- runif(1)
+
+# Generate two independent standard normal variables
+z1_z2 <- box_muller(u1, u2)
+
+cat("Standard normal variable 1:", z1_z2[1])
+cat("\nStandard normal variable 2:", z1_z2[2])
+
 

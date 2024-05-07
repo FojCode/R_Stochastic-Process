@@ -67,7 +67,8 @@ ggplot() +
   geom_line(aes(x = x_grid, y = P[, time_steps[3]]), color = "red") +
   labs(x = "x", y = "Probability Density", title = "Kolmogorov Forward Equation Solution")
 
-# kfe
+# expected time to kit state k of a Markov jump process 
+
 # Function to calculate expected reach time
 expected_reach_time <- function(transition_matrix, initial_state, target_state) {
   n_states <- nrow(transition_matrix)
@@ -88,3 +89,23 @@ expected_reach_time <- function(transition_matrix, initial_state, target_state) 
           if (new_time < first_passage_time[j]) {
             first_passage_time[j] <- new_time
             has_changed <- TRUE
+          }
+        }
+      }
+    }
+  }
+  
+  # Check if target state is reachable from initial state
+  if (first_passage_time[initial_state] == Inf) {
+    return(NA)  # Target state not reachable
+  }
+  
+  return(first_passage_time[initial_state])
+}
+
+# Example usage
+transition_matrix <- matrix(c(0.4, 0.3, 0.3, 0.2, 0.5, 0.3, 0.1, 0.7, 0.2), nrow = 3, byrow = TRUE)
+initial_state <- 1
+target_state <- 3
+
+

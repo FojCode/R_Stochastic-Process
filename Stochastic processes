@@ -305,3 +305,21 @@ polar_method <- function(n_samples, a, b, c, d) {
   u1 <- runif(n_samples)
   u2 <- runif(n_samples)
 
+# Apply polar transformation
+  theta <- 2 * pi * u1  # Random angles between 0 and 2*pi
+  radius <- sqrt(u2)  # Radius
+
+  # Determine transformation based on rectangle or ellipse (modify as needed)
+  if (length(a) == 2 && length(c) == 2) {
+    # Rectangle (replace with your specific transformation if needed)
+    x <- a[1] + radius * (b[1] - a[1]) * cos(theta)
+    y <- c[1] + radius * (d[1] - c[1]) * sin(theta)
+  } else if (length(a) == 1 && length(c) == 1) {
+    # Ellipse (replace with your specific transformation if needed)
+    x <- a[1] + radius * cos(theta) * a[1]
+    y <- c[1] + radius * sin(theta) * c[1]
+  } else {
+    stop("Invalid input for region boundaries (a, b, c, d)")
+  }
+
+

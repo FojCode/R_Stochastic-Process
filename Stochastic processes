@@ -191,5 +191,18 @@ brownian_hitting_time <- function(n_steps, sigma, barrier) {
     }
   }
 
+# Simulation parameters
+n_steps <- 1000
+sigma <- 0.2
+barrier <- 0.5
+
+# Simulate hitting time
+hitting_time <- brownian_hitting_time(n_steps, sigma, barrier)
+
+if (hitting_time == Inf) {
+  cat("Brownian motion did not hit the barrier within", n_steps, "steps.")
+} else {
+  cat("Hitting time:", hitting_time)
+}
 
 

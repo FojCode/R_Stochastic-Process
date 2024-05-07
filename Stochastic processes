@@ -67,3 +67,24 @@ ggplot() +
   geom_line(aes(x = x_grid, y = P[, time_steps[3]]), color = "red") +
   labs(x = "x", y = "Probability Density", title = "Kolmogorov Forward Equation Solution")
 
+# kfe
+# Function to calculate expected reach time
+expected_reach_time <- function(transition_matrix, initial_state, target_state) {
+  n_states <- nrow(transition_matrix)
+  
+  # Initialize first passage times (time to reach target state for the first time)
+  first_passage_time <- rep(Inf, n_states)
+  first_passage_time[target_state] <- 0  # Reaching target state from itself takes 0 time
+  
+  # Iteration to calculate first passage times
+  has_changed <- TRUE
+  while (has_changed) {
+    has_changed <- FALSE
+    for (i in 1:n_states) {
+      if (first_passage_time[i] == Inf) next
+      for (j in 1:n_states) {
+        if (j != target_state && transition_matrix[i, j] > 0) {
+          new_time <- first_passage_time[i] + 1 / transition_matrix[i, j]
+          if (new_time < first_passage_time[j]) {
+            first_passage_time[j] <- new_time
+            has_changed <- TRUE

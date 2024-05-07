@@ -137,3 +137,18 @@ expected_value <- function(W, t, future_step) {
   return(mean(W[1:(n - future_step)]))
 }
 
+# Simulation parameters
+n_steps <- 1000
+sigma <- 0.2
+
+# Simulate Brownian motion path
+W <- brownian_motion(n_steps, sigma)
+
+# Check martingale property at different future time steps
+future_steps <- c(10, 50, 100)
+for (step in future_steps) {
+  E_t <- expected_value(W, step = step)
+  W_future <- W[step + 1]
+  cat("Future step:", step, ", E[W_t] ~=", E_t, ", W_(t+1)=", W_future, "\n")
+}
+

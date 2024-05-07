@@ -173,4 +173,23 @@ probability <- reflection_probability(sigma, t, threshold)
 
 cat("Probability (M(t) <=", threshold, "):", probability)
 
+# hitting times of a Brownian motion 
+# Function to simulate Brownian motion hitting times
+brownian_hitting_time <- function(n_steps, sigma, barrier) {
+  # Generate standard normal random variables
+  dW <- rnorm(n_steps, mean = 0, sd = sqrt(1/n_steps))
+  
+  # Simulate Brownian motion path with drift (set to 0 for standard BM)
+  W <- cumsum(sigma * dW)
+  
+  # Check for hitting time (crossing the barrier)
+  hitting_time <- Inf
+  for (i in 1:n_steps) {
+    if ((W[i] >= barrier & sign(W[i-1]) < 0) | (W[i] <= barrier & sign(W[i-1]) > 0)) {
+      hitting_time <- i
+      break
+    }
+  }
+
+
 

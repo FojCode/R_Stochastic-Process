@@ -225,4 +225,17 @@ ornstein_uhlenbeck <- function(mu, theta, sigma, dt, T, initial_state) {
   process_path <- rep(NA, n_steps)
   process_path[1] <- initial_state
 
+process_path <- ornstein_uhlenbeck(mu, theta, sigma, dt, T, initial_state)
+
+# Plot the simulated path (using ggplot2)
+library(ggplot2)
+
+t <- seq(0, T, by = dt)
+ggplot(data.frame(t, process_path), aes(x = t, y = process_path)) +
+  geom_line(color = "blue") +
+  labs(title = "Simulated Ornstein-Uhlenbeck Process",
+       x = "Time",
+       y = "Process Value") +
+  theme_bw()
+
 

@@ -205,4 +205,24 @@ if (hitting_time == Inf) {
   cat("Hitting time:", hitting_time)
 }
 
+# Function to simulate Ornstein-Uhlenbeck process
+ornstein_uhlenbeck <- function(mu, theta, sigma, dt, T, initial_state) {
+  """
+  This function simulates the Ornstein-Uhlenbeck process using the Euler-Maruyama method.
+
+  Args:
+      mu: The mean reversion level of the process.
+      theta: The rate at which the process reverts to the mean.
+      sigma: The volatility of the process.
+      dt: The time step for simulation.
+      T: The total simulation time.
+      initial_state: The initial state of the process.
+
+  Returns:
+      A numeric vector representing the simulated OU process path.
+  """
+  n_steps <- int(T / dt) + 1  # Number of steps (including initial state)
+  process_path <- rep(NA, n_steps)
+  process_path[1] <- initial_state
+
 

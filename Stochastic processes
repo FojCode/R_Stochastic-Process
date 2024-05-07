@@ -1,0 +1,21 @@
+#Kolmogorov forward equation 
+# Function to define the drift and diffusion coefficients
+d <- function(x, t) {
+  # Example drift (replace with your specific function)
+  return(x)
+}
+
+b <- function(x, t) {
+  # Example diffusion coefficient (replace with your specific function)
+  return(1)  # Constant diffusion
+}
+
+# Function to implement the finite difference scheme
+fd_solve <- function(x_grid, dt, dx, initial_condition) {
+  n_steps <- length(dt)
+  n_grid <- length(x_grid)
+  
+  # Initialize probability density at each grid point and time step
+  P <- matrix(0, nrow = n_grid, ncol = n_steps)
+  P[ , 1] <- initial_condition(x_grid)  # Set initial condition
+  

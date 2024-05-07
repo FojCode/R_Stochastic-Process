@@ -152,3 +152,25 @@ for (step in future_steps) {
   cat("Future step:", step, ", E[W_t] ~=", E_t, ", W_(t+1)=", W_future, "\n")
 }
 
+# maximum value of a Brownian motion 
+
+Function to calculate probability using reflection principle
+reflection_probability <- function(sigma, t, threshold) {
+  dnorm <- function(x) {  # Define normal probability density function (optional)
+    return(exp(-x^2 / 2) / sqrt(2 * pi))
+  }
+  
+  # Reflection principle: P(M(t) <= threshold) = 1 - 2 * P(B(t) >= threshold)
+  return(1 - 2 * pnorm(-threshold / sigma, mean = 0, sd = sqrt(t)))
+}
+
+# Example usage
+sigma <- 1
+t <- 2
+threshold <- 0.5
+
+probability <- reflection_probability(sigma, t, threshold)
+
+cat("Probability (M(t) <=", threshold, "):", probability)
+
+

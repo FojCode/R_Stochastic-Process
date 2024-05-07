@@ -108,4 +108,12 @@ transition_matrix <- matrix(c(0.4, 0.3, 0.3, 0.2, 0.5, 0.3, 0.1, 0.7, 0.2), nrow
 initial_state <- 1
 target_state <- 3
 
+expected_time <- expected_reach_time(transition_matrix, initial_state, target_state)
+
+if (!is.na(expected_time)) {
+  cat("Expected time to reach state", target_state, "from state", initial_state, ":", expected_time)
+} else {
+  cat("State", target_state, "is not reachable from state", initial_state)
+}
+
 

@@ -342,4 +342,15 @@ samples <- polar_method(n_samples, a, b, c, d)
 # c <- c(0.3)  # Center for y
 # d <- c(0.1)  # Radius for y
 # 
+# samples <- polar_method(n_samples, a, b, c, d)
+
+# Plot the generated samples (using ggplot2)
+library(ggplot2)
+ggplot(samples, aes(x = x, y = y)) +
+  geom_point() +
+  labs(title = "Polar Method Samples",
+       x = "X",
+       y = "Y") +
+  theme_bw()
+
 

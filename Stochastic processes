@@ -322,4 +322,24 @@ polar_method <- function(n_samples, a, b, c, d) {
     stop("Invalid input for region boundaries (a, b, c, d)")
   }
 
+# Return generated samples
+  return(data.frame(x = x, y = y))
+}
+
+# Example usage (rectangle)
+n_samples <- 1000
+a <- 0  # Lower bound for x
+b <- 1  # Upper bound for x
+c <- 0  # Lower bound for y
+d <- 1  # Upper bound for y
+
+samples <- polar_method(n_samples, a, b, c, d)
+
+# Example usage (ellipse - modify parameters as needed)
+# n_samples <- 1000
+# a <- c(0.5)  # Center for x
+# b <- c(0.2)  # Radius for x
+# c <- c(0.3)  # Center for y
+# d <- c(0.1)  # Radius for y
+# 
 

@@ -56,3 +56,14 @@ initial_condition <- function(x) {
 
 # Solve the FKE
 P <- fd_solve(x_grid, dt, dx, initial_condition)
+# Plot the solution at different time steps
+library(ggplot2)
+
+time_steps <- seq(1, n_steps, by = 5)
+ggplot() +
+  geom_line(aes(x = x_grid, y = P[, 1]), linetype = "dashed", color = "gray") +  # Initial condition
+  geom_line(aes(x = x_grid, y = P[, time_steps[1]]), color = "blue") +
+  geom_line(aes(x = x_grid, y = P[, time_steps[2]]), color = "green") +
+  geom_line(aes(x = x_grid, y = P[, time_steps[3]]), color = "red") +
+  labs(x = "x", y = "Probability Density", title = "Kolmogorov Forward Equation Solution")
+
